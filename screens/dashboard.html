@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Familie Agenda App - Dashboard</title>
+  <link rel="stylesheet" type="text/css" href="../css/dashboard.css">
+  <link rel="stylesheet" type="text/css" href="../css/style.css">
+  <meta charset="UTF-8">
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <h1>Dashboard</h1>
+    <a id="button" href="#">Uitloggen</a>
+  </div>
+  <div class="button-wrapper">
+    <a class="button" href="addAppointment.html">Afspraak Toevoegen</a>
+    <a class="button" href="familyAppointments.html">Familie Afspraken</a>
+  </div>
+</div>
+
+<script>
+  document.getElementById('button').addEventListener('click', function(event) {
+    // Clear history
+    window.history.replaceState({}, document.title, '/FamilyAgenda/');
+
+    // Redirect to login page
+    window.location.replace('index.html');
+  });
+</script>
+
+</body>
+</html>

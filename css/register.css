@@ -1,0 +1,45 @@
+/* CSS for Register/Login Screen */
+.form {
+  margin-top: 75px;
+  display: flex;
+  flex-direction: column;
+  width: fit-content; /* Ensure buttons take full width */
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  width: 300px;
+  margin-bottom: 15px;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+input[type="submit"] {
+  width: 320px;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #1AA7EC;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+input[type="submit"]:hover {
+  background-color: #0056b3;
+}
+button#toggleAction {
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #1AA7EC;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button#toggleAction:hover {
+  background-color: #0056b3;
+}

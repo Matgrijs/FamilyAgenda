@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Afspraak Toevoegen</title>
+  <link rel="stylesheet" type="text/css" href="../css/addAppointment.css">
+  <link rel="stylesheet" type="text/css" href="../css/style.css">
+  <meta charset="UTF-8">
+</head>
+<body>
+<div class="container">
+<div class="header">
+      <h1>Afspraak toevoegen</h1>
+      <a id="button" href="dashboard.html">Terug</a>
+    </div>
+  <form action="../php/scripts/appointments/addAppointment.php" method="post">
+    <input type="text" name="title" placeholder="Titel" required>
+    <input type="date" name="date" required>
+    <textarea name="description" placeholder="Beschrijving"></textarea>
+
+    <div class="familyMembers" id="familyMembers">
+      <!-- The familyMembers will be displayed here by the fetchAppointments.js script -->
+    </div>
+    <input type="submit" value="Toevoegen">
+  </form>
+</div>
+<script src="../js/fetchFamilyMembers.js"></script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+/* CSS for Register/Login Screen */
+.card-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  width: 90%;
+  height: 90%;
+  gap: 10px;
+}
+
+.card {
+  padding: 20px;
+  text-align: center;
+  background-color: #1AA7EC;
+  color: white;
+  border-radius: 5px;
+  width: 300px;
+  aspect-ratio: 1/1; /* to make the buttons square */
+}
+
+button {
+  padding: 15px;
+  border-radius: 5px;
+  border: 2px solid transparent;
+  background-color: white;
+  color: #1AA7EC;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-size: 18px;
+  text-decoration: none;
+  margin-right: 10px;
+  margin-top: 20px;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+.disabled {
+  background-color: lightgray;
+  cursor: not-allowed;
+}
+
+.disabled:hover {
+  background-color: lightgray;
+}
+
+@media (max-width: 600px) {
+  .card-container {
+    margin-top: 150px;
+  }
+}

@@ -1,0 +1,35 @@
+/* CSS for Dashboard */
+.button-wrapper {
+  margin-top: 75px;
+  display: flex;
+  flex-direction: row;
+  gap: 50px;
+  width: fit-content; /* Ensure buttons take full width */
+}
+
+.button {
+  background-color: #1AA7EC;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 18px;
+  aspect-ratio: 1/1; /* Make buttons square */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 200px;
+}
+
+.button:hover {
+  background-color: #0d80b9;
+}
+
+@media (max-width: 600px) {
+  .button-wrapper {
+    flex-direction: column;
+    margin-top: 150px;
+  }
+}
