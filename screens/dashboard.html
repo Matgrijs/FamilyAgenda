@@ -19,13 +19,40 @@
 </div>
 
 <script>
-  document.getElementById('button').addEventListener('click', function(event) {
-    // Clear history
-    window.history.replaceState({}, document.title, '/FamilyAgenda/');
+document.getElementById('button').addEventListener('click', async function(event) {
+  try {
+    // Await the fetch request to delete the session
+    await fetch('../php/scripts/authentication/deleteSession.php');
 
-    // Redirect to login page
-    window.location.replace('index.html');
-  });
+    // Redirect to index.html after the fetch request completes
+    window.location.replace('../index.html');
+  } catch (error) {
+    // Handle any errors that might occur during the fetch request
+    console.error('Verwijderen van de sessie ging fout:', error);
+  }
+});
+
+
+
+// Function to retrieve session data
+function getSessionData() {
+  return fetch('../php/scripts/authentication/getSession.php')
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Ophalen van de sessie is fout gegaan');
+      }
+      return response.json();
+    })
+    .then(data => data.FamilyMemberId)
+  }
+
+  getSessionData()
+        .then(familyMemberId => {
+          if (familyMemberId === null) {
+            alert('FamilyMemberId niet in de sessie gevonden, log alsjeblieft opnieuw in.')
+            location.href = '../index.html' 
+          }
+        });
 </script>
 
 </body>

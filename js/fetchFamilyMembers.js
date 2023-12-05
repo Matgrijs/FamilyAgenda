@@ -16,7 +16,6 @@ function fetchFamilyMembers() {
       data.forEach(member => {
         const option = document.createElement('option');
         option.setAttribute('value', member.FamilyMemberID);
-        console.log(member.FamilyMemberID)
         option.textContent = member.Name;
         select.appendChild(option);
       });
