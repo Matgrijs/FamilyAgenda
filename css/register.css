@@ -3,7 +3,7 @@
   margin-top: 75px;
   display: flex;
   flex-direction: column;
-  width: fit-content; /* Ensure buttons take full width */
+  width: fit-content;
 }
 
 input[type="text"],

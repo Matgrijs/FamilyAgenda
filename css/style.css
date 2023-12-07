@@ -11,7 +11,7 @@ body {
 }
 
 .container {
-    width: 100%;
+    width: 100vw;
     height: calc(100vh - 100px); /* viewport height minus (top and bottom)padding */
     display: flex;
     background-color: #fff;
