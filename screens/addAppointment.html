@@ -26,5 +26,26 @@
   </form>
 </div>
 <script src="../js/fetchFamilyMembers.js"></script>
+<script>
+// Function to retrieve session data
+function getSessionData() {
+  return fetch('../php/scripts/authentication/getSession.php')
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Ophalen van de sessie is fout gegaan');
+      }
+      return response.json();
+    })
+    .then(data => data.FamilyMemberId)
+  }
+
+  getSessionData()
+        .then(familyMemberId => {
+          if (familyMemberId === null) {
+            alert('FamilyMemberId niet in de sessie gevonden, log alsjeblieft opnieuw in.')
+            location.href = '../index.html' 
+          }
+        });
+</script>
 </body>
 </html>
