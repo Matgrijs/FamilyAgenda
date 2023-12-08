@@ -13,7 +13,8 @@
       <h1>Afspraak toevoegen</h1>
       <a id="button" href="dashboard.html">Terug</a>
     </div>
-  <form action="../php/scripts/appointments/addAppointment.php" method="post">
+  <form action="../php/scripts/appointments/Appointment.php" method="post">
+    <input type="hidden" name="action" value="create">
     <input type="text" name="title" placeholder="Titel" required>
     <input type="date" name="date" required>
     <textarea name="description" placeholder="Beschrijving"></textarea>

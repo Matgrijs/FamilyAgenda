@@ -1,7 +1,7 @@
 // Function to fetch data from the server
 async function fetchData() {
   try {
-    const response = await fetch('../php/scripts/familyMembersAppointments/getFamilyMembersAppointments.php');
+    const response = await fetch('../php/scripts/familyMembersAppointments/FamilyMemberAppointment.php');
     if (!response.ok) {
       throw new Error('Ophalen van afspraken is fout gegaan');
     }
@@ -50,30 +50,37 @@ function getSessionData() {
 // Function to create a button element
 function createButton(action, appointmentID) {
   const button = document.createElement('button');
-  button.textContent = action === 'Delete' ? 'Verwijderen' : 'Aanmelden';
+  button.textContent = action === 'Delete' ? 'Afmelden' : 'Aanmelden';
   button.classList.add(action.toLowerCase()); 
   button.addEventListener('click', () => {
     if (action === 'Delete') {
-      fetch('../php/scripts/familyMembersAppointments/deleteFamilyMemberAppointment.php', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ appointmentID})
-      })
-      .then(() => {
-        fetchData(); // Reload data after deletion
-      })
+      getSessionData()
+        .then(familyMemberId => {
+          if (familyMemberId !== null) {
+            fetch('../php/scripts/familyMembersAppointments/FamilyMemberAppointment.php', {
+              method: 'DELETE',
+              headers: {
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({ familyMemberId, appointmentID })
+            })
+            .then(() => {
+              fetchData(); // Reload data after deletion
+            })
+          } else {
+            alert('FamilyMemberId niet in de sessie gevonden, log alsjeblieft opnieuw in.')
+          }
+        });
     } else if (action === 'Assign') {
       getSessionData()
         .then(familyMemberId => {
           if (familyMemberId !== null) {
-            fetch('../php/scripts/familyMembersAppointments/updateFamilyMemberAppointment.php', {
+            fetch('../php/scripts/familyMembersAppointments/FamilyMemberAppointment.php', {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json'
               },
-              body: JSON.stringify({ familyMemberId, appointmentID})
+              body: JSON.stringify({ familyMemberId, appointmentID })
             })
             .then(() => {
               fetchData() // Reload data after assignment
@@ -85,16 +92,18 @@ function createButton(action, appointmentID) {
     }
   });
 
-  // function to assign the user which is logged in to the appointment
-  if (action === 'Assign') {
     getSessionData().then(familyMemberId => {
       if (familyMemberId !== null) {
         // Check if the appointment exists for the user
-        fetch(`../php/scripts/appointments/getAppointmentById.php?familyMemberID=${familyMemberId}&appointmentID=${appointmentID}`)
+        fetch(`../php/scripts/appointments/Appointment.php?familyMemberID=${familyMemberId}&appointmentID=${appointmentID}`)
           .then(response => response.json())
           .then(data => {
-            if (data.hasAppointment) {
-              button.disabled = true; // Disable the 'Assign' button if the appointment exists
+            if (data.hasAppointment && action === 'Assign') {
+              button.disabled = true; 
+              button.classList.add('disabled');
+            }
+            if (!data.hasAppointment && action === 'Delete') {
+              button.disabled = true; 
               button.classList.add('disabled');
             }
           })
@@ -102,7 +111,6 @@ function createButton(action, appointmentID) {
         alert('FamilyMemberId niet in de sessie gevonden, log alsjeblieft opnieuw in.')
       }
     });
-  }
   return button;
 }
 

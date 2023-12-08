@@ -13,14 +13,16 @@
     <h1>Inloggen</h1>
     <button id="toggleAction">Registreren</button>
   </div>
-  <!-- Login form initially visible -->
-  <form class="form" id="loginForm" method="post" action="php/scripts/authentication/login.php">
+
+  <form class="form" id="loginForm" method="post" action="php/scripts/authentication/UserManagement.php">
+    <input type="hidden" name="action" value="login">
     <input type="email" name="email" placeholder="Email" required>
     <input type="password" name="password" placeholder="Wachtwoord" required>
     <input type="submit" value="Inloggen">
   </form>
-  <!-- Register form initially hidden -->
-  <form class="form" id="registerForm" method="post" action="php/scripts/authentication/register.php" style="display: none;">
+
+  <form class="form" id="registerForm" method="post" action="php/scripts/authentication/UserManagement.php" style="display: none;">
+    <input type="hidden" name="action" value="register">
     <input type="text" name="name" placeholder="Naam" required>
     <input type="email" name="email" placeholder="Email" required>
     <input type="password" name="password" placeholder="Wachtwoord" required>

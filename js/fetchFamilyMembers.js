@@ -1,6 +1,6 @@
 // Function to fetch family members from the server and create the select dropdown
 function fetchFamilyMembers() {
-  fetch('../php/scripts/familyMembers/getFamilyMembers.php')
+  fetch('../php/scripts/familyMembers/FamilyMember.php')
     .then(response => {
       if (!response.ok) {
         throw new Error('Fetching family members failed');
